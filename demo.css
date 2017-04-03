@@ -1,0 +1,50 @@
+html, body {
+    height: 100%;
+    background: white;
+}
+
+.crop-wrapper {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    font-weight: bold;
+    height: 100%;
+}
+
+.crop-wrapper > * {
+    flex: 1 100%;
+}
+
+.crop-top {
+    background: black;
+    opacity: 0.4;
+}
+
+.crop-bottom {
+    background: black;
+    opacity: 0.4;
+}
+
+.crop-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 320px;
+    opacity: 1;
+}
+
+.crop-left {
+    background: black;
+    flex: 1 auto;
+    opacity: 0.6;
+}
+
+.crop-right {
+    background: black;
+    flex: 1 auto;
+    opacity: 0.6;
+}
