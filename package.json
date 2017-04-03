@@ -1,0 +1,25 @@
+{
+  "name": "filezone",
+  "version": "1.0.0",
+  "description": "Click or drop to select file",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kritollm/filezone.git"
+  },
+  "keywords": [
+    "dropzone",
+    "drop",
+    "file"
+  ],
+  "author": "Kristian Mørch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kritollm/filezone/issues"
+  },
+  "homepage": "https://github.com/kritollm/filezone#readme"
+}
