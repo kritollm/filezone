@@ -3,6 +3,30 @@ function prevent(e: DragEvent) {
     e.preventDefault();
 }
 
+function fastClick(element: HTMLElement, fn: (e?) => void) {
+    let lastClicked = 0;
+    let touchFired = false;
+    function listener(e: Event) {
+        let eventTime = Date.now();
+        e.preventDefault();
+        e.stopPropagation();
+        touchFired = e.type == 'touchstart';
+        let clickFired = e.type == 'click';
+        if (clickFired && touchFired) {
+            touchFired = false;
+            return;
+        }
+        if ((eventTime - lastClicked) < 250) {
+            return;
+        }
+        fn();
+        touchFired = false;
+        lastClicked = eventTime;
+    }
+    element.addEventListener('touchstart', listener, false);
+    element.addEventListener('click', listener, false);
+}
+
 let listenerAdded = false;
 function listenDocument() {
     if (!listenerAdded) {
@@ -13,7 +37,7 @@ function listenDocument() {
     }
 }
 
-function fileZone(el: HTMLElement, cb: (files: FileList, e: DragEvent) => void) {
+function fileZone(el: HTMLElement, cb: (files: FileList) => void) {
     listenDocument();
     el.addEventListener("dragenter", prevent, false);
     el.addEventListener("dragover", prevent, false);
@@ -21,8 +45,16 @@ function fileZone(el: HTMLElement, cb: (files: FileList, e: DragEvent) => void) 
         prevent(e);
         var dt = e.dataTransfer;
         var files = e.dataTransfer && e.dataTransfer.files;
-        cb(files, e);
+        cb(files);
     }, false);
+
+    let fileInput = document.createElement('input');
+    fileInput.style.display = 'none';
+    fileInput.type = 'file';
+    fileInput.addEventListener('change', (e) => {
+        cb(fileInput.files);
+    }, false);
+    fastClick(el, () => fileInput.click());
 }
 
 export { fileZone };

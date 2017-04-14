@@ -1,2 +1,2 @@
-declare function fileZone(el: HTMLElement, cb: (files: FileList, e: DragEvent) => void): void;
+declare function fileZone(el: HTMLElement, cb: (files: FileList) => void): void;
 export { fileZone };

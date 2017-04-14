@@ -1,8 +1,7 @@
 import { fileZone } from './index';
 
-function handleFiles(files: FileList, e: DragEvent) {
-    let target = <HTMLElement>e.target;
-    console.log(files, target.id);
+function handleFiles(files: FileList) {
+    console.log(files);
 }
 
 fileZone(document.getElementById('filezone'), handleFiles);
